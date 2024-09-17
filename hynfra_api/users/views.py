@@ -65,6 +65,7 @@ def guest_login(request):
     })
     
 
-
-    
-
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def sso_login(request):
+    pass
