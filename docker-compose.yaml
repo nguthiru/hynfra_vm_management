@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  vue-builder:
+    build:
+      context: ./hynfra_web/
+      
+    volumes:
+      - vue-dist:/app/dist
+
+  django:
+    build:
+      context: ./hynfra_api
+    volumes:
+        #static files on /static
+      - ./backend/static:/static
+    env_file:
+      - .env
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+
+  nginx:
+    build:
+      context: ./hynfra_nginx/
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - vue-dist:/usr/share/nginx/html
+      - ./nginx:/etc/nginx/conf.d
+      - ./backend/static:/var/www/hynfra/static
+      
+      
+    depends_on:
+      - vue-builder
+      - django
+
+  db:
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    expose:
+      - "5432"
+
+volumes:
+  postgres_data:
+  vue-dist:

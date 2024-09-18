@@ -91,10 +91,10 @@ DATABASES = {
         #POSTGRESQL SETUP
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get("POSTGRES_DB_NAME",'hynfra'),
-        'USER':  os.environ.get("POSTGRES_DB_USER",'hynfra'),
-        'PASSWORD': os.environ.get("POSTGRES_DB_PASSWORD",'hynfra254'),
-        'HOST': os.environ.get("POSTGRES_DB_HOST",'localhost'),
-        'PORT': os.environ.get("POSTGRES_DB_PORT",'5432'),
+        'USER':  os.environ.get("POSTGRES_USER",'hynfra'),
+        'PASSWORD': os.environ.get("POSTGRES_PASSWORD",'hynfra254'),
+        'HOST': os.environ.get("POSTGRES_HOST",'127.0.0.1'),
+        'PORT': os.environ.get("POSTGRES_PORT",'5432'),
     }
 }
 
@@ -147,7 +147,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = os.environ.get("STATIC_URL",'/static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
