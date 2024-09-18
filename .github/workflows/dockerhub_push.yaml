@@ -1,0 +1,32 @@
+name: Django + Vue Build and Push to Docker Hub
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      # Build and Push Django Docker Image
+      - name: Build and push Django Docker image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/hynfra-api:latest -f ./hynfra_api/Dockerfile ./hynfra_api
+          docker push ${{ secrets.DOCKER_USERNAME }}/hynfra-api:latest
+
+      # Build and Push Vue Docker Image
+      - name: Build and push Vue Docker image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/hynfra-web:latest -f ./hynfra_web/Dockerfile ./hynfra_web
+          docker push ${{ secrets.DOCKER_USERNAME }}/hynfra-web:latest
