@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -87,8 +88,13 @@ WSGI_APPLICATION = 'hynfra_api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        #POSTGRESQL SETUP
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get("POSTGRES_DB_NAME",'hynfra'),
+        'USER':  os.environ.get("POSTGRES_DB_USER",'hynfra'),
+        'PASSWORD': os.environ.get("POSTGRES_DB_PASSWORD",'hynfra254'),
+        'HOST': os.environ.get("POSTGRES_DB_HOST",'localhost'),
+        'PORT': os.environ.get("POSTGRES_DB_PORT",'5432'),
     }
 }
 
