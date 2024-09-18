@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+html{
+    font-family: 'Montserrat', sans-serif;
+}
+
+button{
+    font-weight: 500;
+}
+.primary-button{
+    background-color: #275BC3;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    transition: all .3s ease-out;
+    font-size: small;
+    &:hover{
+        background-color: #1856ff;
+    }
+}
+.outline-button{
+    background-color: transparent;
+    color: #275BC3;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid #0166FF;
+    transition: all .3s ease-out;
+    &:hover{
+        background-color: #275BC3;
+        color: white;
+    }
+}
