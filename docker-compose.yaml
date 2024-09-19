@@ -1,16 +1,14 @@
-version: '3.8'
+version: '3.9'
 
 services:
   vue-builder:
-    build:
-      context: ./hynfra_web/
+    image: nguthiru/hynfra-web:latest
       
     volumes:
       - vue-dist:/app/dist
 
   django:
-    build:
-      context: ./hynfra_api
+    image: nguthiru/hynfra-api:latest
     volumes:
         #static files on /static
       - ./backend/static:/static
@@ -22,6 +20,7 @@ services:
       - "8000:8000"
 
   nginx:
+
     build:
       context: ./hynfra_nginx/
       dockerfile: Dockerfile
