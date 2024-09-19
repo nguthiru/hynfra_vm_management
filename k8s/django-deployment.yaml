@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: kompose convert --out tmp/k8s/
+    kompose.cmd: kompose convert --out k8s/
     kompose.version: 1.34.0 (cbf2835db)
   labels:
     io.kompose.service: django
@@ -17,7 +17,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: kompose convert --out tmp/k8s/
+        kompose.cmd: kompose convert --out k8s/
         kompose.version: 1.34.0 (cbf2835db)
       labels:
         io.kompose.service: django

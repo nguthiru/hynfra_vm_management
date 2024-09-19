@@ -26,6 +26,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80"
+    labels:
+      kompose.service.expose: "example.com"
+
+      kompose.service.expose.ingress-class-name: "nginx"
     volumes:
       - vue-dist:/usr/share/nginx/html
       - ./nginx:/etc/nginx/conf.d

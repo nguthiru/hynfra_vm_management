@@ -30,3 +30,11 @@ jobs:
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/hynfra-web:latest -f ./hynfra_web/Dockerfile ./hynfra_web
           docker push ${{ secrets.DOCKER_USERNAME }}/hynfra-web:latest
+
+      - name: Build and push Nginx Image
+        run: |
+          docker build -t ${{secrets.DOCKER_USERNAME}}/hynfra-nginx:latest -f ./hynfra_nginx/Dockerfile ./hynfra_nginx
+          docker push ${{secrets.DOCKER_USERNAME}}/hynfra-nginx:latest
+
+
+        
