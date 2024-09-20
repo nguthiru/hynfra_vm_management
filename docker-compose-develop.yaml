@@ -1,17 +1,21 @@
-
 services:
   frontend:
-    image: nguthiru/hynfra-web:latest
+    build:
+      context: ./hynfra_web
+      dockerfile: Dockerfile
     expose:
-      - "80"
+      - "8000"
     labels:
       kompose.volume.type: "hostPath"
       kompose.volume.path: "./frontend/dist"
 
   django:
-    image: nguthiru/hynfra-api:latest
+    build:
+      context: ./hynfra_api
+      dockerfile: Dockerfile
+
     volumes:
-      - ./backend/static:/static
+      - django-static:/static
     labels:
       kompose.volume.type: "hostPath"
     env_file:
@@ -22,7 +26,9 @@ services:
       - "8000:8000"
 
   nginx:
-    image: nguthiru/hynfra-nginx:latest
+    build:
+      context: ./hynfra_nginx
+      dockerfile: Dockerfile
 
     ports:
       - "80:80"
@@ -30,11 +36,8 @@ services:
       kompose.service.type: "loadbalancer"
       kompose.service.expose: "example.com"
     volumes:
-      - vue-dist:/usr/share/nginx/html
-      - ./nginx:/etc/nginx/conf.d
-      - ./backend/static:/var/www/hynfra/static
-      
-      
+      - django-static:/var/www/hynfra/static
+
     depends_on:
       - frontend
       - django
@@ -50,5 +53,4 @@ services:
 
 volumes:
   postgres_data:
-
-  vue-dist:
+  django-static:

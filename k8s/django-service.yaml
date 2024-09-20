@@ -4,6 +4,8 @@ metadata:
   annotations:
     kompose.cmd: kompose convert --out k8s/
     kompose.version: 1.34.0 (cbf2835db)
+    kompose.volume.path: ./backend/static
+    kompose.volume.type: hostPath
   labels:
     io.kompose.service: django
   name: django
