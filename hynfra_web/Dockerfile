@@ -8,7 +8,6 @@ RUN npm run build
 
 # Output stage: Serve with nginx
 
-
 FROM alpine:latest
 WORKDIR /app
 COPY --from=build-stage /app/dist /app/dist

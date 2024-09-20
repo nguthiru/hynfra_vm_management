@@ -4,7 +4,7 @@ services:
       context: ./hynfra_web
       dockerfile: Dockerfile
     expose:
-      - "8000"
+      - "80"
     volumes:
       - vue-dist:/app/dist
 
@@ -20,21 +20,21 @@ services:
     ports:
       - "8000:8000"
 
-  nginx:
-    build:
-      context: ./hynfra_nginx
-      dockerfile: Dockerfile
+  # nginx:
+  #   build:
+  #     context: ./hynfra_nginx
+  #     dockerfile: Dockerfile
     
-    volumes:
-      - vue-dist:/usr/share/nginx/html
-    ports:
-      - "80:80"
-    labels:
-      kompose.service.type: "loadbalancer"
-      kompose.service.expose: "example.com"
-    depends_on:
-      - frontend
-      - django
+  #   volumes:
+  #     - vue-dist:/usr/share/nginx/html
+  #   ports:
+  #     - "80:80"
+  #   labels:
+  #     kompose.service.type: "loadbalancer"
+  #     kompose.service.expose: "example.com"
+  #   depends_on:
+  #     - frontend
+  #     - django
 
   db:
     image: postgres:latest

@@ -1,44 +1,13 @@
 
 services:
-  vue-builder:
-    image: nguthiru/hynfra-web:latest
-      
-    volumes:
-      - vue-dist:/app/dist
-
-    expose:
-      - "80"
-    labels:
-      kompose.volume.type: "hostPath"
-      kompose.volume.path: "./frontend/dist"
-
   django:
     image: nguthiru/hynfra-api:latest
-
-    labels:
-      kompose.volume.type: "hostPath"
     env_file:
       - .env
     depends_on:
       - db
     ports:
       - "8000:8000"
-
-  nginx:
-    image: nguthiru/hynfra-nginx:latest
-
-    ports:
-      - "80:80"
-    labels:
-      kompose.service.type: "loadbalancer"
-      kompose.service.expose: "example.com"
-    volumes:
-      - vue-dist:/usr/share/nginx/html
-      
-      
-    depends_on:
-      - vue-builder
-      - django
 
   db:
     image: postgres:latest
