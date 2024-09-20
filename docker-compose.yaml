@@ -1,11 +1,22 @@
+
 services:
-  frontend:
+  vue-builder:
     image: nguthiru/hynfra-web:latest
+      
+    volumes:
+      - vue-dist:/app/dist
+
     expose:
       - "80"
+    labels:
+      kompose.volume.type: "hostPath"
+      kompose.volume.path: "./frontend/dist"
 
   django:
     image: nguthiru/hynfra-api:latest
+
+    labels:
+      kompose.volume.type: "hostPath"
     env_file:
       - .env
     depends_on:
@@ -21,9 +32,12 @@ services:
     labels:
       kompose.service.type: "loadbalancer"
       kompose.service.expose: "example.com"
-
+    volumes:
+      - vue-dist:/usr/share/nginx/html
+      
+      
     depends_on:
-      - frontend
+      - vue-builder
       - django
 
   db:
@@ -37,3 +51,5 @@ services:
 
 volumes:
   postgres_data:
+
+  vue-dist:

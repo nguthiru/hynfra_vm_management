@@ -5,6 +5,9 @@ services:
       dockerfile: Dockerfile
     expose:
       - "8000"
+    volumes:
+      - vue-dist:/app/dist
+
   django:
     build:
       context: ./hynfra_api
@@ -21,7 +24,9 @@ services:
     build:
       context: ./hynfra_nginx
       dockerfile: Dockerfile
-
+    
+    volumes:
+      - vue-dist:/usr/share/nginx/html
     ports:
       - "80:80"
     labels:
@@ -43,3 +48,4 @@ services:
 volumes:
   postgres_data:
   django-static:
+  vue-dist:
