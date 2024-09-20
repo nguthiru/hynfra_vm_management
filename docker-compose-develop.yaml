@@ -5,19 +5,11 @@ services:
       dockerfile: Dockerfile
     expose:
       - "8000"
-    labels:
-      kompose.volume.type: "hostPath"
-      kompose.volume.path: "./frontend/dist"
-
   django:
     build:
       context: ./hynfra_api
       dockerfile: Dockerfile
 
-    volumes:
-      - django-static:/static
-    labels:
-      kompose.volume.type: "hostPath"
     env_file:
       - .env
     depends_on:
@@ -35,9 +27,6 @@ services:
     labels:
       kompose.service.type: "loadbalancer"
       kompose.service.expose: "example.com"
-    volumes:
-      - django-static:/var/www/hynfra/static
-
     depends_on:
       - frontend
       - django
