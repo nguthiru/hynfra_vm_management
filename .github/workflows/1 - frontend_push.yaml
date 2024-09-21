@@ -21,7 +21,7 @@ jobs:
           password: ${{secrets.VM_SSH_PASSWORD}}
           port: ${{ secrets.VM_SSH_PORT }}
           script: |
-            cd /home/ubuntu/hynfra_vm_management/
+            cd ~/hynfra_vm_management/
             git pull
 
       - name: Set up Node
