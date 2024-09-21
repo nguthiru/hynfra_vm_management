@@ -22,5 +22,5 @@ jobs:
             cd ~/hynfra_vm_management/ && \
             docker compose down && \
             docker compose -f docker-compose-develop.yaml build && \
-            docker compose -f docker-compose-develop.yaml -d up
+            docker compose -f docker-compose-develop.yaml up -d
           "'
