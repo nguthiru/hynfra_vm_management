@@ -16,11 +16,12 @@ jobs:
       - name: Install sshpass
         run: sudo apt-get update && sudo apt-get install -y sshpass
 
-      - name: Ssh Into Server and Update Frontend
+      - name: Ssh Into Server and Update Kubernetees Deployment
         run: |
           sshpass -p "${{ secrets.VM_SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no -p ${{ secrets.VM_SSH_PORT }} ${{ secrets.VM_SSH_USERNAME }}@${{ secrets.VM_SSH_HOST }} 'bash -l -c "
             cd ~/hynfra_vm_management/ && \
             git pull && \
             microk8s.kubectl delete -f k8s/django-deployment.yaml && \
             microk8s.kubectl apply -f k8s/django-deployment.yaml
+            microk8s.kubectl port-forward deployment/django 8000:8000
           "'
