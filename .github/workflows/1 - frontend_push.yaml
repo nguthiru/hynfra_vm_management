@@ -22,6 +22,7 @@ jobs:
             cd ~/hynfra_vm_management/
             git pull
             cd hynfra_web
+            source ~/.bashrc
             npm install
             npm run build
             sudo cp -r dist/* /var/www/html/
