@@ -22,6 +22,8 @@ jobs:
             cd ~/hynfra_vm_management/
             git pull
             cd hynfra_web
-            chmod +x ./deploy.sh
-            ./deploy.sh
+            npm install
+            npm run build
+            echo "${{ secrets.VM_SSH_PASSWORD }}" |sudo cp -r dist/* /var/www/html/
+            echo "${{ secrets.VM_SSH_PASSWORD }}" |sudo systemctl restart nginx
           EOF
