@@ -16,13 +16,12 @@ jobs:
       - name: Ssh Into Server
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.VM_HOST }}
-          username: ${{ secrets.VM_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
+          host: ${{ secrets.VM_SSH_HOST }}
+          username: ${{ secrets.VM_SSH_USERNAME }}
+          password: ${{secrets.VM_SSH_PASSWORD}}
           script: |
             cd /home/ubuntu/hynfra_vm_management/
             git pull
-
 
       - name: Set up Node
         uses: actions/setup-node@v2
