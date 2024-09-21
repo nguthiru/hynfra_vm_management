@@ -45,7 +45,9 @@
       </div>
     </div>
     <div class="dashboard-profile relative" v-else>
-      <button class="primary-button">Login</button>
+      <RouterLink :to="{ name: 'login' }">
+        <button class="primary-button">Login</button>
+      </RouterLink>
     </div>
   </div>
 </template>
