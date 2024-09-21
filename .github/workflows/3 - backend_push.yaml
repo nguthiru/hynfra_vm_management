@@ -3,7 +3,7 @@ name: Redeploy Kubernetes Backend Service
 on:
   push:
     branches:
-      - develop
+      - master
 
 jobs:
   build:
