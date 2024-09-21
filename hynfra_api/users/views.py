@@ -68,11 +68,13 @@ def guest_login(request):
 
 @api_view(["POST"])
 @permission_classes([AllowAny])
-def sso_login(request):
+def github_sso_login(request):
     """
     Github SSO Login
     """
-    code = request.GET.get('code')
+    code = request.data.get('code')
+    if not code:
+        return Response({'error': 'Code is required'}, status=400)
 
     token_url = 'https://github.com/login/oauth/access_token'
     headers = {'Accept': 'application/json'}
@@ -109,5 +111,7 @@ def sso_login(request):
             'refresh': str(refresh),
             'access': str(refresh.access_token),
         })
+    else:
+        return Response({'error': 'Invalid code'}, status=400)
 
 

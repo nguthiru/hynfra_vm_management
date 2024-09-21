@@ -11,7 +11,8 @@ router.register("user", UserViewSet, basename="users")
 
 urlpatterns = [
     path(r"register/", RegisterView.as_view(), name="register"),
-    path(r'guest-login/',guest_login,name="guest-login")
+    path(r'guest-login/',guest_login,name="guest-login"),
+    path(r'github-login/',github_sso_login,name="github-login"),
 ]
 
 urlpatterns += router.urls

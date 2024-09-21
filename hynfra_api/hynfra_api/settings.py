@@ -164,5 +164,5 @@ SIMPLE_JWT = {
 
 # Github OAUTH settings
 GITHUB_CLIENT_ID = os.environ.get("GITHUB_CLIENT_ID","Ov23li6or8KFW37866Ve")
-GITHUB_CLIENT_SECRET = os.environ.get("GITHUB_CLIENT_SECRET","")
-GITHUB_REDIRECT_URI = os.environ.get("GITHUB_REDIRECT_URI","http://localhost:8000/auth/github/callback")
+GITHUB_CLIENT_SECRET = os.environ.get("GITHUB_CLIENT_SECRET","9879f856f23f0d76bd4f166044dacdb1d2b20b22")
+GITHUB_REDIRECT_URI = os.environ.get("GITHUB_REDIRECT_URI","http://localhost:8080/auth/sso-login/?sso=github")
