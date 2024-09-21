@@ -7,7 +7,8 @@ from rest_framework.response import Response
 from .serializers import *
 from .permissions import *
 from rest_framework_simplejwt.tokens import RefreshToken
-
+from django.conf import settings
+import requests
 # Create your views here.
 User = get_user_model()
 
@@ -71,5 +72,42 @@ def sso_login(request):
     """
     Github SSO Login
     """
+    code = request.GET.get('code')
 
-    
+    token_url = 'https://github.com/login/oauth/access_token'
+    headers = {'Accept': 'application/json'}
+    data = {
+        'client_id': settings.GITHUB_CLIENT_ID,
+        'client_secret': settings.GITHUB_CLIENT_SECRET,
+        'code': code,
+        'redirect_uri': settings.GITHUB_REDIRECT_URI,
+    }
+
+    # Exchange the authorization code for an access token
+    token_response = requests.post(token_url, headers=headers, data=data)
+    token_json = token_response.json()
+    access_token = token_json.get('access_token')
+
+    if access_token:
+        # Use access token to get the user's GitHub profile
+        user_info_url = 'https://api.github.com/user'
+        user_info_response = requests.get(
+            user_info_url, headers={'Authorization': f'token {access_token}'}
+        )
+        user_info = user_info_response.json()
+        print(user_info)
+
+        # Now you can log in the user or create an account using user_info
+        # For example, you can check if the user already exists and log them in
+        # Or create a new user account using the user_info
+        user,created = User.objects.get_or_create(username=user_info['login'], email=user_info['email'])
+        if created:
+            user.set_unusable_password()
+            user.save()
+        refresh = RefreshToken.for_user(user)
+        return Response({
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+        })
+
+

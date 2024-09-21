@@ -161,3 +161,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
 }
+
+# Github OAUTH settings
+GITHUB_CLIENT_ID = os.environ.get("GITHUB_CLIENT_ID","Ov23li6or8KFW37866Ve")
+GITHUB_CLIENT_SECRET = os.environ.get("GITHUB_CLIENT_SECRET","")
+GITHUB_REDIRECT_URI = os.environ.get("GITHUB_REDIRECT_URI","http://localhost:8000/auth/github/callback")

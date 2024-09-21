@@ -48,14 +48,18 @@
           OR
         </span>
       </div>
-      <button type="button" class="w-full outline-button my-2">
+      <button
+        type="button"
+        class="w-full outline-button my-2"
+        @click="githubLogin"
+      >
         <div class="flex justify-center">
           <img
-            src="https://img.icons8.com/color/48/000000/google-logo.png"
+            src="https://banner2.cleanpng.com/20180711/iqy/aawpwnuou.webp"
             alt=""
             class="w-6 h-6"
           />
-          <span class="ml-2">Sign in with Google</span>
+          <span class="ml-2">Sign in with Github</span>
         </div>
       </button>
     </form>
@@ -85,6 +89,7 @@
     font-weight: 500;
   }
 }
+
 input {
   height: 50px;
   padding: 0 20px;
@@ -100,6 +105,7 @@ input {
 .outline-button {
   min-height: 45px;
 }
+
 .forgot-password-text {
   margin-left: auto;
   text-align: end;
@@ -155,5 +161,14 @@ var guestLogin = async () => {
   } catch {
     toast.error("Guest Login Not Available");
   }
+};
+
+var githubLogin = async () => {
+  const clientId = "Ov23li6or8KFW37866Ve";
+  const redirectUri = "http://localhost:8080/auth/sso-login/?sso=github"; // Your redirect URI
+  const scope = "user";
+  const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}`;
+
+  window.location.href = githubAuthUrl;
 };
 </script>

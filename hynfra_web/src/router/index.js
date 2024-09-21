@@ -89,6 +89,14 @@ const routes = [
             /* webpackChunkName: "register" */ "../components/auth/RegisterPage.vue"
           ),
       },
+      {
+        path: "sso-login",
+        name: "sso",
+        component: () =>
+          import(
+            /* webpackChunkName: "sso" */ "../components/auth/SSOPage.vue"
+          ),
+      },
     ],
   },
 ];
