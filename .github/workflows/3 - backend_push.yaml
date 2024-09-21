@@ -3,7 +3,7 @@ name: Redeploy Kubernetes Backend Service
 on:
   push:
     branches:
-      - master
+      - develop
 
 jobs:
   build:
@@ -20,6 +20,6 @@ jobs:
         run: |
           sshpass -p "${{ secrets.VM_SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no -p ${{ secrets.VM_SSH_PORT }} ${{ secrets.VM_SSH_USERNAME }}@${{ secrets.VM_SSH_HOST }} 'bash -l -c "
             cd ~/hynfra_vm_management/ && \
-            git pull && \
+            dokcer-compose down && \
             docker compose up -d
           "'

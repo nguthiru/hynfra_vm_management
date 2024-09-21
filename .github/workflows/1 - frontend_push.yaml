@@ -3,7 +3,7 @@ name: Update Server with New Frontend
 on:
   push:
     branches:
-      - master
+      - develop
 
 jobs:
   build:
