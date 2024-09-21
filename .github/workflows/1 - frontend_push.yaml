@@ -24,10 +24,8 @@ jobs:
             cd ~/hynfra_vm_management/
             git pull
             cd hynfra_web
-            npm install
-            npm run build
-            sudo cp -r dist/* /var/www/html/
-            sudo systemctl restart nginx
+            chmod +x ./deploy.sh
+            ./deploy.sh
 
     
 
