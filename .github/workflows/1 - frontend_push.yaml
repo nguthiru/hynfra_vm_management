@@ -24,6 +24,6 @@ jobs:
             cd hynfra_web
             npm install
             npm run build
-            echo "${{ secrets.VM_SSH_PASSWORD }}" | sudo -A cp -r dist/* /var/www/html/
-            echo "${{ secrets.VM_SSH_PASSWORD }}" | sudo -A systemctl restart nginx
+            sudo cp -r dist/* /var/www/html/
+            sudo systemctl restart nginx
           EOF
