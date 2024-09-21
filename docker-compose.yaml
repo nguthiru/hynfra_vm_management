@@ -1,5 +1,12 @@
 
 services:
+  frontend:
+    image: nguthiru/hynfra-web:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - vue-dist:/app/dist
+    
   django:
     image: nguthiru/hynfra-api:latest
     env_file:
@@ -8,6 +15,16 @@ services:
       - db
     ports:
       - "8000:8000"
+
+  nginx:
+    image: nguthiru/hynfra-nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - vue-dist:/usr/share/nginx/html
+
+    depends_on:
+      - frontend
 
   db:
     image: postgres:latest
@@ -20,5 +37,4 @@ services:
 
 volumes:
   postgres_data:
-
   vue-dist:
