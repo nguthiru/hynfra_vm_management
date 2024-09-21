@@ -13,21 +13,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Ssh Into Server
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.VM_SSH_HOST }}
-          username: ${{ secrets.VM_SSH_USERNAME }}
-          password: ${{secrets.VM_SSH_PASSWORD}}
-          port: ${{ secrets.VM_SSH_PORT }}
-          script: |
+      - name: Install sshpass
+        run: sudo apt-get update && sudo apt-get install -y sshpass
+
+      - name: Ssh Into Server and Update Frontend
+        run: |
+          sshpass -p "${{ secrets.VM_SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no -p ${{ secrets.VM_SSH_PORT }} ${{ secrets.VM_SSH_USERNAME }}@${{ secrets.VM_SSH_HOST }} << 'EOF'
             cd ~/hynfra_vm_management/
             git pull
             cd hynfra_web
-            chmod +x ./deploy.sh
+            chown +x ./deploy.sh
             ./deploy.sh
-
-    
-
-
-        
+          EOF
