@@ -19,6 +19,7 @@ jobs:
           host: ${{ secrets.VM_SSH_HOST }}
           username: ${{ secrets.VM_SSH_USERNAME }}
           password: ${{secrets.VM_SSH_PASSWORD}}
+          port: ${{ secrets.VM_SSH_PORT }}
           script: |
             cd /home/ubuntu/hynfra_vm_management/
             git pull
