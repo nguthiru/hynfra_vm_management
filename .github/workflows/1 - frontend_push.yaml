@@ -22,6 +22,6 @@ jobs:
             cd ~/hynfra_vm_management/
             git pull
             cd hynfra_web
-            chown +x ./deploy.sh
+            chmod +x ./deploy.sh
             ./deploy.sh
           EOF
