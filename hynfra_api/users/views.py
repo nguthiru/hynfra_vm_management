@@ -91,17 +91,12 @@ def github_sso_login(request):
     access_token = token_json.get('access_token')
 
     if access_token:
-        # Use access token to get the user's GitHub profile
         user_info_url = 'https://api.github.com/user'
         user_info_response = requests.get(
             user_info_url, headers={'Authorization': f'token {access_token}'}
         )
         user_info = user_info_response.json()
-        print(user_info)
 
-        # Now you can log in the user or create an account using user_info
-        # For example, you can check if the user already exists and log them in
-        # Or create a new user account using the user_info
         user,created = User.objects.get_or_create(username=user_info['login'], email=user_info['email'])
         if created:
             user.set_unusable_password()

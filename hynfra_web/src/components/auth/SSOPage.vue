@@ -1,9 +1,7 @@
 <template>
   <div class="h-screen">
     <div class="flex flex-col gap-3 justify-center items-center"></div>
-    Logging in with github...
-
-    <SpringSpinner size="100" color="blue" />
+    <SpringSpinner size="40" color="blue" class="mt-5" />
   </div>
 </template>
 <script setup>
