@@ -23,8 +23,8 @@ jobs:
             git pull && \
             cd hynfra_web && \
             source ~/.bashrc && \
-            npm install && \
-            npm run build && \
+            /home/lab/.nvm/versions/node/v20.17.0/bin/npm install && \
+            /home/lab/.nvm/versions/node/v20.17.0/bin/npm run build && \
             sudo cp -r dist/* /var/www/html/ && \
             sudo systemctl restart nginx
           "'
