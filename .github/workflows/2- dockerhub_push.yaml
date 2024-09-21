@@ -3,7 +3,7 @@ name: Django + Vue Build and Push to Docker Hub
 on:
   push:
     branches:
-      - master
+      - develop
 
 jobs:
   build:
