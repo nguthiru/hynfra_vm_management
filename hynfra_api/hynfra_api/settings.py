@@ -29,7 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['http://102.209.68.86:30080/','http://localhost/','http://102.209.68.86:30443']
+CSRF_TRUSTED_ORIGINS = ['http://102.209.68.86:30080/','http://localhost/','http://102.209.68.86']
 
 # Application definition
 
