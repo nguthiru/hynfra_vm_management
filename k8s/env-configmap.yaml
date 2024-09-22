@@ -6,9 +6,8 @@ data:
   POSTGRES_PASSWORD: hynfra254
   POSTGRES_PORT: "5432"
   POSTGRES_USER: hynfra
-  STATIC_URL: http://127.0.0.1/static/
 kind: ConfigMap
 metadata:
   labels:
     io.kompose.service: db-env
-  name: env
+  name: env-config
