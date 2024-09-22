@@ -7,7 +7,8 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
 # Copy SSL certificates
-# COPY nginx/ssl /etc/nginx/ssl
+COPY ssl/selfsigned.crt /etc/nginx/ssl/selfsigned.crt
+COPY ssl/selfsigned.key /etc/nginx/ssl/selfsigned.key
 
 # Create directory for Let's Encrypt challenges if needed
 RUN mkdir -p /var/www/certbot
