@@ -55,11 +55,11 @@
       >
         <div class="flex justify-center">
           <img
-            src="https://banner2.cleanpng.com/20180711/iqy/aawpwnuou.webp"
+            src="https://w7.pngwing.com/pngs/646/324/png-transparent-github-computer-icons-github-logo-monochrome-head-thumbnail.png"
             alt=""
             class="w-6 h-6"
           />
-          <span class="ml-2">Sign in with Github</span>
+          <span class="ml-2">Continue with Github</span>
         </div>
       </button>
     </form>

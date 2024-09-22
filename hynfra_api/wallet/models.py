@@ -82,7 +82,7 @@ class Subscription(models.Model):
     start_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.billing_profile.user.username} - {self.rate_plan.name}"
+        return f"{self.billing_profile.user.username} - {self.rate_plan}"
     
 @receiver(models.signals.post_save, sender=BillingProfile)
 def create_subscription(sender, instance, created, **kwargs):

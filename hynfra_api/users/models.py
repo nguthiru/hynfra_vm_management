@@ -32,3 +32,8 @@ class CustomUser(AbstractUser):
 
     def is_guest(self):
         return self.role == "guest"
+    
+    def save(self, *args, **kwargs):
+        if self.is_superuser:
+            self.role = "admin"
+        super().save(*args, **kwargs)

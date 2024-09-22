@@ -70,6 +70,14 @@ const fetchProfile = async () => {
     });
     profile.value = data;
   } catch (error) {
+    if (error.response) {
+      if (error.response.status === 401) {
+        localStorage.removeItem("token");
+        router.replace({
+          name: "login",
+        });
+      }
+    }
     console.error(error);
   }
 };
@@ -86,7 +94,13 @@ const logout = () => {
 };
 
 onMounted(() => {
-  fetchProfile();
+  if (localStorage.getItem("token")) {
+    fetchProfile();
+  } else {
+    router.replace({
+      name: "login",
+    });
+  }
 });
 </script>
 

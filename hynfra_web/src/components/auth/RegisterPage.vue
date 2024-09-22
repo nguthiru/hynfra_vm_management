@@ -69,14 +69,18 @@
           OR
         </span>
       </div>
-      <button type="button" class="w-full outline-button my-2">
+      <button
+        type="button"
+        class="w-full outline-button my-2"
+        @click="githubLogin"
+      >
         <div class="flex justify-center">
           <img
-            src="https://img.icons8.com/color/48/000000/google-logo.png"
+            src="https://w7.pngwing.com/pngs/646/324/png-transparent-github-computer-icons-github-logo-monochrome-head-thumbnail.png"
             alt=""
             class="w-6 h-6"
           />
-          <span class="ml-2">Sign up with Google</span>
+          <span class="ml-2">Sign in with Github</span>
         </div>
       </button>
     </form>
@@ -174,5 +178,13 @@ const register = async () => {
       loading.value = false;
     }
   }
+};
+var githubLogin = async () => {
+  const clientId = "Ov23li6or8KFW37866Ve";
+  const redirectUri = "http://localhost:8080/auth/sso-login/?sso=github"; // Your redirect URI
+  const scope = "user";
+  const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}`;
+
+  window.location.href = githubAuthUrl;
 };
 </script>
