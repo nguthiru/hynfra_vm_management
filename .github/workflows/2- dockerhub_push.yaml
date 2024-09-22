@@ -49,6 +49,7 @@ jobs:
           sshpass -p "${{ secrets.VM_SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no -p ${{ secrets.VM_SSH_PORT }} ${{ secrets.VM_SSH_USERNAME }}@${{ secrets.VM_SSH_HOST }} 'bash -l -c "
             cd ~/hynfra_vm_management/ && \
             git pull && \
+            microk8s.kubectl apply -f k8s/ && \
             microk8s.kubectl set image deployment/frontend frontend=nguthiru/hynfra-web:latest && \
             microk8s.kubectl set image deployment/django django=nguthiru/hynfra-api:latest && \
             microk8s.kubectl set image deployment/nginx nginx=nguthiru/hynfra-nginx:latest 
