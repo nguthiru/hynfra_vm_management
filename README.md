@@ -3,6 +3,16 @@
 [![Site](https://img.shields.io/badge/Site-Live-brightgreen)](https://102.209.68.86)
 [![API Docs](https://img.shields.io/badge/API-Documentation-blue)](https://documenter.getpostman.com/view/13304226/2sAXqtb27r)
 
+## 🔗 Project Links
+[VM Dashboard](https://102.209.68.86)
+[Admin Page](https://102.209.68.86/admin)
+[API](https://102.209.68.86/api)
+[API documentation](https://documenter.getpostman.com/view/13304226/2sAXqtb27r)
+
+### Admin Credentials
+**Username** - hynfra-admin
+**Password** - hynfra254
+
 ## 🛠 Project Setup (Development)
 
 ### 🖥 VueJs Frontend
