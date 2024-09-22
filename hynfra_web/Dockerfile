@@ -9,6 +9,6 @@ RUN npm run build
 # Output stage: Serve with nginx
 FROM nginx:1.21-alpine
 COPY --from=build-stage /app/dist /usr/share/nginx/html
-COPY --from=build-stage /app/dist /app/dist
+COPY --from=build-stage /app/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
