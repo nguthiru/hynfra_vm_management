@@ -53,6 +53,9 @@ jobs:
             microk8s.kubectl set image deployment/frontend frontend=nguthiru/hynfra-web:latest && \
             microk8s.kubectl set image deployment/django django=nguthiru/hynfra-api:latest && \
             microk8s.kubectl set image deployment/nginx nginx=nguthiru/hynfra-nginx:latest
+            microk8s.kubectl rollout restart deployment/frontend && \
+            microk8s.kubectl rollout restart deployment/django && \
+            microk8s.kubectl rollout restart deployment/nginx
 
           "'
 
