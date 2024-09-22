@@ -17,4 +17,11 @@ spec:
         image: nguthiru/hynfra-nginx:latest
         ports:
         - containerPort: 80
-       
+        volumeMounts:
+        - name: frontend-volume
+          mountPath: /usr/share/nginx/html
+          readOnly: true
+      volumes:
+      - name: frontend-volume
+        persistentVolumeClaim:
+          claimName: frontend-pvc
