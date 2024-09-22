@@ -1,2 +1,3 @@
 backend/
 .env
+hynfra_nginx/ssl/dhparam.pem
